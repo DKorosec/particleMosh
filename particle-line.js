@@ -12,7 +12,7 @@ class ParticleLine {
             b: Math.sqrt((c1.b ** 2 + c2.b ** 2) / 2)
         };
 
-        this.geometry = new THREE.CylinderGeometry(5, 5, 1, 32);
+        this.geometry = new THREE.CylinderGeometry(Particle.RADIUS_SIZE, Particle.RADIUS_SIZE, 1, 32);
         this.material = new THREE.MeshBasicMaterial({ color: new THREE.Color(ac.r, ac.g, ac.b) });
         this.mesh = new THREE.Mesh(this.geometry, this.material);
     }
@@ -39,8 +39,13 @@ class ParticleLine {
             let width = (1 - dist / max_dist) * 1.5;
             if (width < 0.1)
                 this.mesh.visible = false;
-            else
-                this.mesh.scale.z = this.mesh.scale.x = width;
+            else {
+                this.material.transparent = true;
+                if (ParticleLine.USE_POWER_OF_TWO_DISTANCE)
+                    this.material.opacity = 1 - Math.pow(dist / max_dist, 2);
+                else
+                this.material.opacity = 1 - dist / max_dist;
+            }
         }
     }
 
@@ -48,3 +53,4 @@ class ParticleLine {
         return this.mesh;
     }
 }
+ParticleLine.USE_POWER_OF_TWO_DISTANCE = false;
