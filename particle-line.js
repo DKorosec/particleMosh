@@ -36,16 +36,10 @@ class ParticleLine {
             this.mesh.visible = false;
         } else {
             this.mesh.scale.y = dist;
-            this.mesh.visible = true;
-            let width = (1 - dist / max_dist) * 1.5;
-            if (width < 0.1)
-                this.mesh.visible = false;
-            else {
-                if (ParticleLine.USE_POWER_OF_TWO_DISTANCE)
-                    this.material.opacity = 1 - Math.pow(dist / max_dist, 2);
-                else
-                    this.material.opacity = 1 - dist / max_dist;
-            }
+            if (ParticleLine.USE_POWER_OF_TWO_DISTANCE)
+                this.material.opacity = 1 - Math.pow(dist / max_dist, 2);
+            else
+                this.material.opacity = 1 - dist / max_dist;
         }
     }
 
