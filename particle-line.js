@@ -32,7 +32,7 @@ class ParticleLine {
 
         this.mesh.lookAt(this.to_particle.position);
         this.mesh.rotateX(Math.PI / 180 * 90);
-        if (dist < max_dist) {
+        if (dist > max_dist) {
             this.mesh.visible = false;
         } else {
             this.mesh.visible = true;
