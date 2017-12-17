@@ -14,6 +14,7 @@ class ParticleLine {
 
         this.geometry = new THREE.CylinderGeometry(Particle.RADIUS_SIZE, Particle.RADIUS_SIZE, 1, 32);
         this.material = new THREE.MeshBasicMaterial({ color: new THREE.Color(ac.r, ac.g, ac.b) });
+        this.material.transparent = true;
         this.mesh = new THREE.Mesh(this.geometry, this.material);
     }
 
@@ -40,7 +41,6 @@ class ParticleLine {
             if (width < 0.1)
                 this.mesh.visible = false;
             else {
-                this.material.transparent = true;
                 if (ParticleLine.USE_POWER_OF_TWO_DISTANCE)
                     this.material.opacity = 1 - Math.pow(dist / max_dist, 2);
                 else
