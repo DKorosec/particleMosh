@@ -44,7 +44,7 @@ class ParticleLine {
                 if (ParticleLine.USE_POWER_OF_TWO_DISTANCE)
                     this.material.opacity = 1 - Math.pow(dist / max_dist, 2);
                 else
-                this.material.opacity = 1 - dist / max_dist;
+                    this.material.opacity = 1 - dist / max_dist;
             }
         }
     }
